@@ -77,7 +77,7 @@ def show():
             print()
 
 
-print(Fore.WHITE + '1-vs 2-pc')
+print(Fore.WHITE + '1-vs 2-pc 3-PC')
 
 
 op = int(input())
@@ -184,5 +184,56 @@ if op == 2:
                 print("full")
             
         show()
+
+        chech_w()
+
+if op == 3:
+
+    print('PC')
+
+    print(Fore.BLACK + '___')    
+
+    show()
+    
+    print()
+
+    start = time.time()
+
+
+    while True:
+
+        while True:
+            
+            computer_rand_1 = random.randint(1,3)
+            computer_rand_2 = random.randint(1,3)
+
+            m = computer_rand_1
+            n = computer_rand_2
+
+            if T_T_T[m-1][n-1] == '-':
+                T_T_T[m-1][n-1] = x
+                break
+
+
+        show()
+        print()
+
+        chech_w()
+
+
+        while True:
+            
+            computer_rand_1 = random.randint(1,3)
+            computer_rand_2 = random.randint(1,3)
+
+            m = computer_rand_1
+            n = computer_rand_2
+
+            if T_T_T[m-1][n-1] == '-':
+                T_T_T[m-1][n-1] = o
+                break
+
+        show()
+        print()
 
         chech_w()
