@@ -9,42 +9,65 @@ T_T_T = [['-' , '-' , '-'] ,
          ['-' , '-' , '-'] ,
          ['-' , '-' , '-'] ]
 
+
 x = Fore.RED + 'x'
 o = Fore.BLUE + 'o'
 
-
-def check_1():
-    if T_T_T[2][0] == x and T_T_T[1][1] == x and T_T_T[0][2] == x :
-        print(Fore.GREEN + "X WIN , Time: " + str( time.time() - start ))
-        exit()
-    elif T_T_T[2][2] == x and T_T_T[1][1] == x and T_T_T[0][0] == x :
-        print(Fore.GREEN + "X WIN , Time: " + str( time.time() - start ))
-        exit()
+def check_x():
+    count_1 = 0
 
     for i in range(3):
-        if T_T_T[i][0] == x and T_T_T[i][1] == x and T_T_T[i][2] == x :
-            print(Fore.GREEN + "X WIN , Time: " + str( time.time() - start ))
-            exit()
-    for j in range (3):
-        if T_T_T[0][j] == x and T_T_T[1][j] == x and T_T_T[2][j] == x :
-            print(Fore.GREEN + "X WIN , Time: " + str( time.time() - start ))
-            exit()
+        if T_T_T[i][0] == T_T_T[i][1] == T_T_T[i][2] == x:
+            count_1 = 1
+            break
+        if T_T_T[0][i] == T_T_T[1][i] == T_T_T[2][i] == x:
+            count_1 = 1
+            break
+        if T_T_T[2][0] == T_T_T[1][1] == T_T_T[0][2] == x:
+            count_1 = 1
+            break
+        if T_T_T[2][2] == T_T_T[1][1] == T_T_T[0][0] == x:
+            count_1 = 1
+            break
+    return count_1
+
+def check_o():
+    count_2 = 0
+
+    for i in range(3):
+        if T_T_T[i][0] == T_T_T[i][1] == T_T_T[i][2] == o:
+            count_2 = 1
+            break
+        if T_T_T[0][i] == T_T_T[1][i] == T_T_T[2][i] == o:
+            count_2 = 1
+            break
+        if T_T_T[2][0] == T_T_T[1][1] == T_T_T[0][2] == o:
+            count_2 = 1
+            break
+        if T_T_T[2][2] == T_T_T[1][1] == T_T_T[0][0] == o:
+            count_2 = 1
+            break
+    return count_2
+
+def chech_w():
+    p1 = check_x()
+    p2 = check_o()
     
-
-def check_2():
-    if T_T_T[2][0] == o and T_T_T[1][1] == o and T_T_T[0][2] == o :
+    if p1>p2:
+        print(Fore.GREEN + "X WIN , Time: " + str( time.time() - start ))
+        exit()
+    elif p2>p1:
         print(Fore.GREEN + "O WIN , Time: " + str( time.time() - start ))
         exit()
-    elif T_T_T[2][2] == o and T_T_T[1][1] == o and T_T_T[0][0] == o :
-        print(Fore.GREEN + "O WIN , Time: " + str( time.time() - start ))
-        exit()
+    else:
+        flag = True
+        for i in range(3):
+            for j in range(3):
+                if T_T_T[i][j] == '-':
+                    flag = False
 
-    for i in range(3):
-        if T_T_T[i][0] == o and T_T_T[i][1] == o and T_T_T[i][2] == o :
-            print(Fore.GREEN + "O WIN , Time: " + str( time.time() - start ))
-    for j in range (3):
-        if T_T_T[0][j] == o and T_T_T[1][j] == o and T_T_T[2][j] == o :
-            print(Fore.GREEN + "O WIN , Time: " + str( time.time() - start ))
+        if flag == True and p1 == p2:
+            print(Fore.BLACK + "DRAW , Time: " + str( time.time() - start ))
             exit()
 
 def show():
@@ -72,7 +95,7 @@ if op==1:
 
         while True:
             print( Fore.WHITE + 'p1:red X')
-          
+            
             m = int(input('m: '))
             n = int(input('n: '))
 
@@ -85,14 +108,14 @@ if op==1:
             else:
                 print('wrong(1-3)')
 
-
         show()
-        check_1()
+
+        chech_w()
 
 
         while True:
             print(Fore.WHITE + 'p2:blue O')
-        
+
             m = int(input('m: '))
             n = int(input('n: '))
 
@@ -107,8 +130,8 @@ if op==1:
 
         
         show()
-        check_2()
 
+        chech_w()
 
 
 if op == 2:
@@ -124,7 +147,7 @@ if op == 2:
 
         while True:
             print( Fore.WHITE + 'p1:red X')
-
+        
             m = int(input('m: '))
             n = int(input('n: '))
 
@@ -137,11 +160,11 @@ if op == 2:
             else:
                 print('wrong(1-3)')
 
-
         show()
-        check_1()
 
-        
+        chech_w()
+
+
         while True:
             print(Fore.WHITE + 'pc:blue O')
             
@@ -159,7 +182,7 @@ if op == 2:
                 break
             else:
                 print("full")
-
-    
+            
         show()
-        check_2()
+
+        chech_w()
